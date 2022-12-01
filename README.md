@@ -9,5 +9,6 @@ All the Trivia, All the Time!
 3. npm start
 
 OPTIONAL?
+
 4. Create your own branch to code in (I created a ronniebranch)
     Source control window -> three dots menu -> Branch -> Create branch
