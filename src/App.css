@@ -14,19 +14,19 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: rgb(115, 112, 204);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
 .div__category {
   font-size: calc(10px + 2vmin);
-  padding: 10px;
+  padding: 30px;
 }
 
 .App-link {
@@ -41,3 +41,20 @@
     transform: rotate(360deg);
   }
 }
+
+button
+{
+  color: blueviolet;
+  border-radius: 110px;
+  height: 50%;
+  margin: 5px;
+}
+
+#styledimg {
+  background-image: url(/src/quiztime.png);
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 250px;
+  }
+
+  
