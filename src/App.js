@@ -1,4 +1,4 @@
-import React, { useState, useHook, useEffect } from "react";
+import React, { useState, useHook, useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -8,12 +8,20 @@ function App() {
   const [showCorrect, setShowCorrect] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
+  const renderAfterCalled = useRef(false);
 
-  // useEffect(() => {
-  //   fetch(url)
-  //     .then((res) => res.json())
-  //     .then((json) => setQuestion(json.results));
-  // }, []);
+  useEffect(() => {
+    if (!renderAfterCalled.current) {
+      fetch(url)
+        .then((res) => res.json())
+        .then((json) => console.log(json.results));
+        // console.log(question);
+    }
+
+    renderAfterCalled.current = true;
+  }, []);
+
+
 
   const q = [
     {
