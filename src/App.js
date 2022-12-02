@@ -4,31 +4,31 @@ import "./App.css";
 function App() {
   const url = "https://opentdb.com/api.php?amount=1&type=multiple";
   const [question, setQuestion] = useState([]);
+  const [sortedOptions, setSortedOptions] = useState([]);
   const [index, setIndex] = useState(0);
   const [showCorrect, setShowCorrect] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
+  const [answerOptions, setAnswerOptions] = useState([]);
   const renderAfterCalled = useRef(false);
 
-  useEffect(() => {
-    if (!renderAfterCalled.current) {
-      fetch(url)
-        .then((res) => res.json())
-        .then((json) => console.log(json.results));
-        // console.log(question);
-    }
+  // useEffect(() => {
+  //   if (!renderAfterCalled.current) {
+  //     fetch(url)
+  //       .then((res) => res.json())
+  //       .then((json) => console.log(json.results));
+  //       // console.log(question);
+  //   }
 
-    renderAfterCalled.current = true;
-  }, []);
-
-
+  //   renderAfterCalled.current = true;
+  // }, []);
 
   const q = [
     {
       category: "History",
       type: "multiple",
       difficulty: "medium",
-      question: "What historical event was Tchaikovsky&#039;s 1812 Overture referencing?",
+      question: "What historical event was Tchaikovsky's 1812 Overture referencing?",
       correct_answer: "The Napoleonic Wars",
       incorrect_answers: ["The American War of 1812", "The Russian Revolution", "The Charge of the Light Brigade (Crimean War)"],
     },
@@ -52,7 +52,7 @@ function App() {
       category: "General Knowledge",
       type: "multiple",
       difficulty: "medium",
-      question: "According to the United States&#039; CDC, one in how many Americans die annually due to smoking?",
+      question: "According to the United States' CDC, one in how many Americans die annually due to smoking?",
       correct_answer: "Five",
       incorrect_answers: ["Twenty", "Ten", "One hundred"],
     },
@@ -68,7 +68,7 @@ function App() {
 
   function nextQuestion() {
     setIndex((prevState) => prevState + 1);
-    setShowCorrect((prevState) => !prevState);
+    setShowCorrect(false);
   }
 
   function checkAnswer(event) {
@@ -79,7 +79,7 @@ function App() {
       console.log("Wrong!");
     }
 
-    setShowCorrect((prevState) => !prevState);
+    setShowCorrect(true);
 
     if (index + 1 === q.length) {
       console.log("Game over!");
@@ -106,7 +106,15 @@ function App() {
   }
 
   const options = q[index].incorrect_answers.concat(q[index].correct_answer);
-  shuffle(options);
+
+  useEffect(() => {
+    if (!showCorrect) {
+      setSortedOptions(q[index].incorrect_answers.concat(q[index].correct_answer));
+      setSortedOptions((prevState) => shuffle(prevState));
+    }
+  }, [showCorrect]);
+
+  // let options2 = !showCorrect ? shuffle(options) : options2;
 
   return (
     <div className="App">
@@ -114,7 +122,7 @@ function App() {
         <div className="div__category">{q[index].category}</div>
         <div className="div__question">{q[index].question}</div>
         <div className="div__answers">
-          {options.map((answer) => (
+          {sortedOptions.map((answer) => (
             <button
               value={answer}
               onClick={checkAnswer}
@@ -127,7 +135,6 @@ function App() {
         </div>
         {showCorrect && (
           <div className="div__correct">
-            {q[index].correct_answer}
             {gameOver || <button onClick={nextQuestion}>Next question</button>}
             {gameOver && (
               <span>
