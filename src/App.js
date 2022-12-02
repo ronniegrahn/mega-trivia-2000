@@ -7,6 +7,7 @@ function App() {
   const [index, setIndex] = useState(0);
   const [showCorrect, setShowCorrect] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+  const [score, setScore] = useState(0);
 
   // useEffect(() => {
   //   fetch(url)
@@ -58,50 +59,46 @@ function App() {
   ];
 
   function nextQuestion() {
-    setIndex(prevState => prevState + 1)
-    setShowCorrect(prevState => !prevState)
+    setIndex((prevState) => prevState + 1);
+    setShowCorrect((prevState) => !prevState);
   }
 
   function checkAnswer(event) {
-    // console.log(event.target.value);
-    // console.log(q.correct_answer);
-
     if (event.target.value === q[index].correct_answer) {
       console.log("Correct!");
+      setScore(score + 1);
     } else {
       console.log("Wrong!");
     }
-  
-    setShowCorrect(prevState => !prevState)
 
-    if(index + 1 === q.length) {
-      console.log("Game over!")
+    setShowCorrect((prevState) => !prevState);
+
+    if (index + 1 === q.length) {
+      console.log("Game over!");
       setGameOver(true);
     }
   }
 
   function shuffle(array) {
-    let currentIndex = array.length,  randomIndex;
-  
-    // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-  
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+    if (!showCorrect) {
+      let currentIndex = array.length,
+        randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+      }
     }
-  
     return array;
   }
-  
-  
-  const options = q[index].incorrect_answers.concat(q[index].correct_answer)
-  shuffle(options);
 
+  const options = q[index].incorrect_answers.concat(q[index].correct_answer);
+  shuffle(options);
 
   return (
     <div className="App">
@@ -110,12 +107,27 @@ function App() {
         <div className="div__question">{q[index].question}</div>
         <div className="div__answers">
           {options.map((answer) => (
-            <button value={answer} onClick={checkAnswer}>
+            <button
+              value={answer}
+              onClick={checkAnswer}
+              disabled={showCorrect}
+              style={{ background: answer === q[index].correct_answer && showCorrect ? "green" : "" }}
+            >
               {answer}
             </button>
           ))}
         </div>
-        {showCorrect && <div className="div__correct">{q[index].correct_answer}{gameOver || <button onClick={nextQuestion}>Next question</button>}</div>}
+        {showCorrect && (
+          <div className="div__correct">
+            {q[index].correct_answer}
+            {gameOver || <button onClick={nextQuestion}>Next question</button>}
+            {gameOver && (
+              <span>
+                You got {score}/{q.length} correct!
+              </span>
+            )}
+          </div>
+        )}
       </header>
     </div>
   );
