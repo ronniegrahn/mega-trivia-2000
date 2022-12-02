@@ -123,7 +123,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div id="styledimg"></div>
-        <div className="div__category">Category: {q[index].category}</div>
+        <div className="div__category"><b>Categories:</b> {q[index].category}</div>
         <div className="div__question">{q[index].question}</div>
         <div className="div__answers">
           {options.map((answer) => (

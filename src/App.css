@@ -42,12 +42,16 @@
   }
 }
 
-button
-{
-  color: blueviolet;
-  border-radius: 110px;
-  height: 50%;
-  margin: 5px;
+button {
+  background-color: rgb(243, 214, 25);
+  border-radius: 20%;
+  color: black;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 5px
 }
 
 #styledimg {
@@ -55,6 +59,7 @@ button
   background-repeat: no-repeat;
   height: 200px;
   width: 250px;
-  }
+
+}
 
   
