@@ -14,19 +14,21 @@
 }
 
 .App-header {
-  background-color: rgb(115, 112, 204);
+  /* background-color: rgb(115, 112, 204); */
+  background-color: rgb(243, 214, 25);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: black;
 }
 
 .div__category {
-  font-size: calc(10px + 2vmin);
-  padding: 30px;
+  font-size: calc(18px + 2vmin);
+  font-family: cursive;
+  padding: 20px;
+  color: rgb(115, 112, 204);
 }
 
 .App-link {
@@ -43,7 +45,19 @@
 }
 
 button {
-  background-color: rgb(243, 214, 25);
+  background-color: white;
+  border-radius: 20%;
+  color: black;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 5px
+}
+
+button:hover {
+  background-color: rgb(115, 112, 204);
   border-radius: 20%;
   color: black;
   padding: 15px 20px;
@@ -59,7 +73,4 @@ button {
   background-repeat: no-repeat;
   height: 200px;
   width: 250px;
-
 }
-
-  
