@@ -1,5 +1,6 @@
 import React, { useState, useHook, useEffect, useRef } from "react";
 import "./App.css";
+import Logo from "./quiztime.png";
 
 function App() {
   const url = "https://opentdb.com/api.php?amount=1&type=multiple";
@@ -76,7 +77,7 @@ function App() {
       console.log("Correct!");
       setScore(score + 1);
     } else {
-      console.log("Wrong!");
+      event.style={background: "red"};
     }
 
     setShowCorrect(true);
@@ -119,6 +120,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      <div><img src={Logo} id="logo-img"></img></div>
         <div className="div__category">{q[index].category}</div>
         <div className="div__question">{q[index].question}</div>
         <div className="div__answers">
@@ -127,7 +129,7 @@ function App() {
               value={answer}
               onClick={checkAnswer}
               disabled={showCorrect}
-              style={{ background: answer === q[index].correct_answer && showCorrect ? "green" : "" }}
+              style={{ background: answer === q[index].correct_answer && showCorrect ? "lightgreen" : "" }}
             >
               {answer}
             </button>
