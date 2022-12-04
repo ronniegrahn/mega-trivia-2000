@@ -38,12 +38,16 @@ function App() {
     }
   }
   function checkAnswer(event) {
-    if (questions[index].options[event.target.value] === questions[index].correct_answer) {
-      setScore(score + 1);
-    }
-    setShowCorrect(true);
-    if (index + 1 === questions.length) {
-      setGameOver(true);
+    if (!showCorrect) {
+      if (questions[index].options[event.target.value] === questions[index].correct_answer) {
+        setScore(score + 1);
+      } else {
+        event.target.style.backgroundColor = "pink";
+      }
+      setShowCorrect(true);
+      if (index + 1 === questions.length) {
+        setGameOver(true);
+      }
     }
   }
 
@@ -57,11 +61,11 @@ function App() {
     } else if (score / questions.length > 0.75) {
       return "Good job!";
     } else if (score / questions.length > 0.5) {
-      return "Alright, not too bad."
+      return "Alright, not too bad.";
     } else if (score === 0) {
-      return "You know nothing John Snow"
+      return "You know nothing John Snow";
     } else {
-      return "Not good, not good at all..."
+      return "Not good, not good at all...";
     }
   }
 
@@ -81,7 +85,6 @@ function App() {
             <div className="div__answers">
               {item.options.map((opt, optIndex) => (
                 <button
-                  disabled={showCorrect}
                   value={optIndex}
                   key={optIndex}
                   dangerouslySetInnerHTML={{ __html: opt }}

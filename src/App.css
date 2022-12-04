@@ -21,7 +21,7 @@
 }
 
 button {
-  background-color: white;
+  background: white;
   border-radius: 20% / 10%;
   color: black;
   padding: 15px 20px;
@@ -33,7 +33,7 @@ button {
 }
 
 button:hover {
-  background-color: rgb(115, 112, 204);
+  background: rgb(115, 112, 204);
   border-radius: 20%;
   color: black;
   padding: 15px 20px;
