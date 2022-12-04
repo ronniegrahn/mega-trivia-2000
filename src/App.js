@@ -40,7 +40,7 @@ function App() {
   function checkAnswer(event) {
     if (questions[index].options[event.target.value] === questions[index].correct_answer) {
       setScore(score + 1);
-    } 
+    }
     setShowCorrect(true);
     if (index + 1 === questions.length) {
       setGameOver(true);
@@ -82,9 +82,13 @@ function App() {
           {gameOver || <button onClick={nextQuestion}>Next question</button>}
           {gameOver && (
             <div>
-              <p>Your score is {score}/{questions.length}!</p>
+              <p>
+                Your score is {score}/{questions.length}!
+              </p>
               <p>{score / questions.length > 0.75 ? "Not too bad!" : "You can do better..."}</p>
-              <p><button onClick={newGame}>New Game</button></p>
+              <p>
+                <button onClick={newGame}>New Game</button>
+              </p>
             </div>
           )}
         </div>
