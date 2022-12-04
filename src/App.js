@@ -51,6 +51,20 @@ function App() {
     window.location.reload(false);
   }
 
+  function verdict() {
+    if (score === questions.length) {
+      return "Awesome!";
+    } else if (score / questions.length > 0.75) {
+      return "Good job!";
+    } else if (score / questions.length > 0.5) {
+      return "Alright, not too bad."
+    } else if (score === 0) {
+      return "You know nothing John Snow"
+    } else {
+      return "Not good, not good at all..."
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -85,7 +99,7 @@ function App() {
               <p>
                 Your score is {score}/{questions.length}!
               </p>
-              <p>{score / questions.length > 0.75 ? "Not too bad!" : "You can do better..."}</p>
+              <p>{verdict()}</p>
               <p>
                 <button onClick={newGame}>New Game</button>
               </p>
