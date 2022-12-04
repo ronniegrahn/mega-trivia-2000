@@ -14,10 +14,19 @@
 }
 
 .div__category {
-  font-size: calc(18px + 2vmin);
+  font-size: calc(16px + 1vmin);
   font-family: cursive;
   padding: 20px;
   color: rgb(115, 112, 204);
+}
+
+.div__question {
+  font-size: calc(16px + 1vmin);
+  padding: 20px;
+}
+
+.div__answers {
+  padding: 20px;
 }
 
 button {
@@ -46,6 +55,7 @@ button:hover {
 
 #logo-img {
   border-radius: 20% / 10%;
+  margin: 20px;
 }
 
 .div__correct {

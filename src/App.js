@@ -32,9 +32,11 @@ function App() {
   }, []);
 
   function nextQuestion() {
-    if (index + 1 < questions.length) {
-      setIndex((prevState) => prevState + 1);
-      setShowCorrect(false);
+    if (showCorrect) {
+      if (index + 1 < questions.length) {
+        setIndex((prevState) => prevState + 1);
+        setShowCorrect(false);
+      }
     }
   }
   function checkAnswer(event) {
